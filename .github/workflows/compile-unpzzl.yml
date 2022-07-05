@@ -1,0 +1,33 @@
+name: compile unpzzl
+# Compile for Linux and Windows and upload artifacts
+
+on: workflow_dispatch
+jobs:
+  make-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Source
+        uses: actions/checkout@v3
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+      - name: Compile for Linux
+        run: crystal build --release --no-debug --stats --verbose --error-trace -o unpzzl.elf unpzzl.cr
+      - name: Upload Linux binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-linux
+          path: unpzzl.elf
+  make-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Download Source
+        uses: actions/checkout@v3
+      - name: Install Crystal
+        uses: crystal-lang/install-crystal@v1
+      - name: Compile for Windows
+        run: crystal build --release --no-debug --stats --verbose --error-trace -o unpzzl.exe unpzzl.cr
+      - name: Upload Windows binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-windows
+          path: unpzzl.exe
