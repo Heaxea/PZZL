@@ -69,7 +69,7 @@ Or directly:
 $ crystal build --stats --release --no-debug unpzzl.cr
 ```
 
-Compiled with crystal release version `1.4.1` *(latest as of `2022/07/05`)*
+Compiled with crystal release version `1.5.0` *(latest as of `2022/07/08`)*
 
 `unpzzl` exit code details:
 
